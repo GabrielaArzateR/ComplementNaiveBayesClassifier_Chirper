@@ -1,83 +1,84 @@
-# Chirper Sentiment Analysis
 
-## Project Overview
+   **Project Name and Description**
+    - Complement Naive Bayes Classifier 
+    - It involves building an algorithm to classify the post of a platform called Chirper as positive comments(Chirps) or negative comments (Caws)..
+  
+1. **Installation**
+### Prerequisites
+-Before you can use the Complement Naive Bayes Classifier, make sure you have the following prerequisites installed:
+- `numpy` (>=1.0.0)
+- `scikit-learn` (>=0.24.0)
+- `pandas` (>=1.2.3)
+- `matplotlib` (>=2.0.0)
+- `seaborn` (>=1.0.0)
+- `collections` (>=0.24.0)
+- `pandas` (>=1.2.3)
+- `matplotlib` (>=2.0.0)
 
-This project is a part of the final test for a Naive Bayes Classifier to earn a certificate. It involves building a sentiment analysis model to categorize Chirper posts(platform) as positive (Chirps) or negative (Caws).
+1. **Usage**
+    In this section, we'll guide you on how to use the Complement Naive Bayes Classifier for classifying Chirper posts as positive comments (Chirps) or negative comments (Caws). We'll cover the main features and functions of the code.
 
-## Project Context
+    ### Step 1: Import the Classifier
 
-### The Chirper Platform
+To get started, you need to import the Complement Naive Bayes Classifier in your Python script:
 
-Chirper is a social platform where users communicate by uploading posts on various topics.
-They can express their excitenment over a great song, an upcoming movie,etc. Posts can express excitement,However sometimes users feel displeased, angry or disappointed too.
+```python
+from complement_naive_bayes_classifier import ComplementNaiveBayesClassifier
 
-## Dataset Overview
+### Step 2: Initialize the Classifier
+classifier = ComplementNaiveBayesClassifier(smoothing=0.1)
 
-Data Size: The dataset consists of 10,000 rows and 6 columns.
-The dataset(chiper.csv file) is stored in a pandas DataFrame and contains the following columns:
+### Step 3: Train the Classifier
+Train the classifier on your dataset. Ensure you have your data prepared in the appropriate format:
 
-1. **Target:** This column signifies the sentiment of each post.
-   - **0:** Represents 'Caws' (negative posts).
-   - **1:** Represents 'Chirps' (positive posts).
+X_train, y_train = load_training_data()  # Replace with your data loading function
+classifier.fit(X_train, y_train)
 
-2. **IDS:** A unique identifier for each post.
+Step 4: Make Predictions
 
-3. **Date:** The timestamp indicating when the post was made.
+Once trained, you can use the classifier to make predictions on new data:
+X_new_data = load_new_data()  # Replace with your data loading function
+predictions = classifier.predict(X_new_data)
 
-4. **Flag:** An indicator or flag associated with the post, if applicable.
+Step 5: Evaluate the Results
 
-5. **User:** The username or account linked to the post.
+Evaluate the classifier's performance using metrics like accuracy, precision, recall, and F1-score:
 
-6. **Text:** The textual content of the posts.
-   
-#Only 2 of these columns are necesary to perform the classification: 'Target' and 'Text'.
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
- **Target:** This column signifies the sentiment of each post.
-   - **0:** Represents 'Caws' (negative posts).
-   - **1:** Represents 'Chirps' (positive posts).
+y_true = load_true_labels()  # Replace with your true labels
+accuracy = accuracy_score(y_true, predictions)
+precision = precision_score(y_true, predictions)
+recall = recall_score(y_true, predictions)
+f1 = f1_score(y_true, predictions)
 
-## Model Selection
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1 Score: {f1}")
 
-Choosing the Complement Naive Bayes algorithm due to the dataset's small size and severe class imbalance.
+  
+2. **Configuration**
+    - If your project uses configuration files, API keys, or environment variables, explain how to set these up.
+  
+3. **Testing**
 
-## Justifying Model Performance
+### Running Tests
 
-1. The model could use a larger training dataset compared to the current one.
-2. Some data points in the training or test data might be labeled incorrectly.
+To ensure the Complement Naive Bayes Classifier functions correctly and to maintain code quality, we recommend running tests regularly. Follow these steps to run tests for the project:
 
-**Explanation**:
-- The Complement Naive Bayes algorithm is designed for imbalanced datasets, making a larger dataset beneficial.
-- The dataset is quite small and severely imbalanced. It is not trained optimally on the caw class.Therefore a larger dataset would definitely improve the performance.
-- We cannot exclude the fact that there might been a mistake during the data collection process.
--The random_seed should be of very little importance to the performance of the model
-- The possibility of incorrectly labeled data points cannot be ruled out in the data collection process.
-- The random seed number is of little importance for model performance, whereas stratification is crucial for balanced class distribution during train-test splitting.
-- A more important parameter for the sppliting would be stratify which makes sure that the classes are equally distributed among the training and testing sets. That is, we dont want to train mainly on chirps or caws respectively because of bad suffling.
+1. **Install Testing Dependencies**:
 
-## Model Comparison
+ In this structure:
 
-At first, a Multinomial Naive Bayes model was considered. However, it was later switched to the Complement Naive Bayes model, which showed improved precision and recall for the 'Caws' class.
-Identifying class 1 as positive the number of true positivies has decrease compared to the Multinomial.
+- **Running Tests**: Users are guided on how to install testing dependencies, run tests, and adapt the commands for the specific testing framework in use.
 
-## Conclusion
+- **Testing Framework**: Users are informed about the testing framework being used (in this case, `pytest`). You can replace it with the actual framework you are using.
 
-According to the classification report, there are also no false negative samples (here, 0 is referred to as the negative class)
-From the classification report, we read off that the accuracy is well above 90%.
-This result indeed looks very impressive, until we take a look at the confusion matrix,which reveals that no caws whatsoever have been identified.
-The botton left cell storing the false negatives(predicted 0s but are 1s in reality.)
-The fact that there are no true negatives and no false negatives leads to the following problem with the precision of the caw class.
+- **Writing Tests**: Users interested in contributing or expanding the test suite are directed to the project's `tests` directory, where they can find examples and resources to help them write additional tests.
 
-Precision = True Positivies/ True Positivies + False Positivies =  0/0 =0 = Undefined 
+This format helps users understand how to test your project, whether for validation or contribution, and provides information about the testing framework you've chosen.
 
-In the formula we indentify 0 as the positive class in the formula/
-The additional parameter zero_division corrects this. if the parameter is not there, the classification_report() method would throw an error but would still assign a value of 0 for the precision.
-Using 0 might be appropriate in some cases, but in others, you might want to use a different value depending on the specifics of your analysis.
 
-We first did with Multinomial Model, now we changed to complement to see diference.
-We can see that the accuracy has actually decreased slighly, however the precision and recall 
-metrics for the caws have indeed improved. It is also true that the number of true positivies,
-shown on the bottom right corner of the confusion matrix, has decreased slighly.
-From 2850 to 2810
 
-Finally the F1 score is evaluated as follows:
-#F1 = (2/ 1/precision + 1 /recall)
+Remember to use clear and concise language, and include as much relevant information as possible without overwhelming the reader. Well-structured READMEs can greatly enhance the user experience and encourage collaboration on your Python project.
