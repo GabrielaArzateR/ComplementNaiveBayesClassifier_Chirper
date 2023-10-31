@@ -2,6 +2,7 @@
 
 import os
 import sys
+import pandas as pd
 from collections import Counter
 from sklearn.model_selection import train_test_split
 
@@ -13,11 +14,12 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(current_directory, '..'))
 
 
-from ComplementNaiveBayesClassifier.model import load_data, data_segmentation, feature_engineering, model_training, model_testing, model_performance
+from ComplementNaiveBayesClassifier.model import data_segmentation, feature_engineering, model_training, model_testing, model_performance
+
+from data_directory.processed_data import load_data
 
 #Data Load
-data_path = '/Users/gabrielaarzate/Desktop/REPOSITORIES/3- Machine_Learning/Datasets /chirper.csv'
-data = load_data(data_path)
+data = load_data('/Users/gabrielaarzate/Desktop/REPOSITORIES_LOCAL/3- Machine_Learning/Jupyter_Projects/Datasets /chirper.csv')
 
 #Data Segmentation 
 x_train, x_test, y_train, y_test = data_segmentation(data)
