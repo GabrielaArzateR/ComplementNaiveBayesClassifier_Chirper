@@ -5,6 +5,7 @@ import sys
 import pandas as pd
 from collections import Counter
 from sklearn.model_selection import train_test_split
+import json
 
 #This code is typically used to add the parent directory (project's root directory)
 #to the Python path, allowing you to import modules
@@ -13,13 +14,18 @@ from sklearn.model_selection import train_test_split
 current_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(current_directory, '..'))
 
-
 from ComplementNaiveBayesClassifier.model import data_segmentation, feature_engineering, model_training, model_testing, model_performance
+from data_directory.processed_data import upload_file
 
-from data_directory.processed_data import load_data
+#Define the full path to the 'settings.json' file
+settings_file_path = "/Users/gabrielaarzate/Desktop/Public_Project/ComplementNaiveBayesClassifier_ChirperL/settings.json"
+
+#Load the JSON configuration from the file
+with open(settings_file_path, 'r') as file:
+    config_data = json.load(file)
 
 #Data Load
-data = load_data('/Users/gabrielaarzate/Desktop/REPOSITORIES_LOCAL/3- Machine_Learning/Jupyter_Projects/Datasets /chirper.csv')
+data = upload_file('/Users/gabrielaarzate/Desktop/REPOSITORIES_LOCAL/3- Machine_Learning/Jupyter_Projects/Datasets /chirper.csv')
 
 #Data Segmentation 
 x_train, x_test, y_train, y_test = data_segmentation(data)
