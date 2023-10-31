@@ -1,8 +1,11 @@
+#Importing Libraries
 import os
 import sys
 import pandas as pd
 from collections import Counter
 from sklearn.model_selection import train_test_split
+import argparse
+
 
 #This code is typically used to add the parent directory (project's root directory)
 #to the Python path, allowing you to import modules
@@ -13,10 +16,20 @@ sys.path.append(os.path.join(current_directory, '..'))
 
 from ComplementNaiveBayesClassifier.model import data_segmentation, feature_engineering, model_training, model_testing, model_performance
 from data_directory.processed_data import upload_file
+import argparse 
 
-if __name__ == '__main__':
-    #Data Load
-    data = upload_file('/Users/gabrielaarzate/Desktop/REPOSITORIES_LOCAL/3- Machine_Learning/Jupyter_Projects/Datasets /chirper.csv')
+def main():
+    # Create an ArgumentParser object
+    parser = argparse.ArgumentParser(description="File Upload Script")
+
+    # Add a command-line argument for the file path
+    parser.add_argument('file_path', type=str, help='Path to the file to upload')
+
+    # Parse the command-line arguments
+    args = parser.parse_args()
+    
+    # Call the upload_file function with the file path argument
+    data = upload_file(args.file_path)
 
     #Data Segmentation 
     x_train, x_test, y_train, y_test = data_segmentation(data)
@@ -53,3 +66,6 @@ if __name__ == '__main__':
     #-Model Performance Visualization Confusion of Matrix 
     report,confusionmatrix_display= model_performance(y_test, y_test_pred,best_model_tested)
     print(report)
+
+if __name__ == '__main__':
+    main()
