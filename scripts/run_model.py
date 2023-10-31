@@ -15,7 +15,7 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(current_directory, '..'))
 
 from ComplementNaiveBayesClassifier.model import data_segmentation, feature_engineering, model_training, model_testing, model_performance
-from data_directory.processed_data import upload_file
+from data.processed_data import upload_file
 import argparse 
 
 def main():
