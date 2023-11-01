@@ -51,7 +51,7 @@ def main():
     print("Test Data Shape:", x_test_transf.shape)
 
     #Model Training
-    best_model = model_training(x_train_transf,y_train)
+    best_model = model_training(x_train_transf, y_train)
 
     #Model Testing
     best_model_tested,y_test_pred,prior_probability = model_testing(best_model,x_test_transf)
