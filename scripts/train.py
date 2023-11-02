@@ -7,7 +7,7 @@ import argparse
 current_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(current_directory, '..'))
 
-from ComplementNaiveBayesClassifier.script import train_test
+from complement_naive_bayes_classifier.script import train_test
 
 def main():
     # Create an ArgumentParser object

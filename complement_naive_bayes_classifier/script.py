@@ -9,10 +9,10 @@ from collections import Counter
 #to the Python path, allowing you to import modules
 #from your project even if your script is located in a subdirectory.
 
-from ComplementNaiveBayesClassifier.preprocessing import load_data, data_segmentation, feature_engineering
-from ComplementNaiveBayesClassifier.training import model_training
-from ComplementNaiveBayesClassifier.testing import model_testing
-from ComplementNaiveBayesClassifier.visualization import model_performance
+from complement_naive_bayes_classifier.preprocessing import load_data, data_segmentation, feature_engineering
+from complement_naive_bayes_classifier.training import model_training
+from complement_naive_bayes_classifier.testing import model_testing
+from complement_naive_bayes_classifier.visualization import model_performance
 
 def train_test(data_path):
     # Load the data
