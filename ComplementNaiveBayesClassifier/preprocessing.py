@@ -1,10 +1,6 @@
-
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from collections import Counter
 from sklearn.feature_extraction.text import CountVectorizer
-import numpy as np
 
 
 def load_data(data_path):

@@ -1,12 +1,5 @@
-
-
-
-import pandas as pd
 from sklearn.metrics import classification_report
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.metrics import classification_report, ConfusionMatrixDisplay
-from ComplementNaiveBayesClassifier.testing_3 import model_testing
 
 def model_performance(y_test, y_test_pred,best_model_tested):
     

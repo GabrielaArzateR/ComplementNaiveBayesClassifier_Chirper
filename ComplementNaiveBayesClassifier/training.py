@@ -1,9 +1,4 @@
-
-
-
-import pandas as pd
 from sklearn.naive_bayes import ComplementNB
-from ComplementNaiveBayesClassifier.preprocessing_1 import load_data, data_segmentation, feature_engineering
 
 
 def model_training(x_train_transf,y_train):

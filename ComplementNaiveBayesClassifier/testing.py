@@ -1,9 +1,4 @@
-
-
-import pandas as pd
 import numpy as np
-from ComplementNaiveBayesClassifier.training_2 import model_training
-
 
 def model_testing(best_model, x_test_transf):
     """
