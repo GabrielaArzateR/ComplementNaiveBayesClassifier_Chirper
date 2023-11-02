@@ -2,8 +2,9 @@
 
 
 import pandas as pd
-from sklearn.naive_bayes import MultinomialNB,ComplementNB
-from ComplementNaiveBayesClassifier.preprocessing import data_segmentation, feature_engineering
+from sklearn.naive_bayes import ComplementNB
+from ComplementNaiveBayesClassifier.preprocessing_1 import load_data, data_segmentation, feature_engineering
+
 
 def model_training(x_train_transf,y_train):
     
@@ -26,3 +27,4 @@ def model_training(x_train_transf,y_train):
     best_model.fit(x_train_transf, y_train)
     
     return best_model
+
